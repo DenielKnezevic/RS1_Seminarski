@@ -1,0 +1,44 @@
+<div *ngIf="dodajZaposlenika" class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="dodajZaposlenika = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Ime zaposlenika</label>
+          <input class="form-control" [(ngModel)]="Novi.ime">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Prezime zaposlenika</label>
+          <input class="form-control" [(ngModel)]=Novi.prezime>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Datum rodjenja</label>
+          <input class="form-control" class="form-control" [(ngModel)]=Novi.datumRodjenja>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Grad</label>
+          <input class="form-control" class="form-control" [(ngModel)]=Novi.grad>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Drzava</label>
+          <input class="form-control" class="form-control" [(ngModel)]=Novi.drzava>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Broj telefona</label>
+          <input class="form-control" class="form-control" [(ngModel)]=Novi.brojTelefona>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Adresa</label>
+          <input class="form-control" class="form-control" [(ngModel)]=Novi.adresa>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="Ugasi()">Close</button>
+        <button type="button" class="btn btn-dark" (click)="Spasi(Novi)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

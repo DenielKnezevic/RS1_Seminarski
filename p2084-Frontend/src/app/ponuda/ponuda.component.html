@@ -1,0 +1,47 @@
+<div class ="ponuda">
+  <h1 style="text-align: center">Evidencija o ponudi</h1><br><br>
+  <p style="margin-left: auto ; margin-right: auto; width:90%">Filter: <input style="border: 1px black solid" [(ngModel)]="filter"><button class="btn btn-dark" style="float: right" (click)="novaPonuda = true">Dodaj novu ponudu</button>
+  <table *ngIf="ponuda != null" class="table table-striped" style="margin-left: auto ; margin-right: auto; width:90%">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"><p style="text-align: center">Naziv</p></th>
+      <th scope="col"><p style="text-align: center">Cijena</p></th>
+      <th scope="col"><p style="text-align: center">Akcija</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of Filtriraj()">
+      <td><p style="text-align: center">{{x.nazivPonude}}</p></td>
+      <td><p style="text-align: center">{{x.cijena}} KM</p></td>
+      <td><p style="text-align: center"><button class="btn btn-danger" (click)="ObrisiProizvod(x)">Obrisi</button>&nbsp;<button class="btn btn-success" (click)="Uredi(x)">Uredi</button></p></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-edit-ponuda [editPonuda]="odabranaPonuda"></app-edit-ponuda>
+
+<div *ngIf="novaPonuda" class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="novaPonuda = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Naziv ponude</label>
+          <input class="form-control" [(ngModel)]="dodajPonudu.nazivPonude">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Cijena</label>
+          <input class="form-control" [(ngModel)]=dodajPonudu.cijena type="number">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="novaPonuda = false">Close</button>
+        <button type="button" class="btn btn-dark" (click)="Dodaj(dodajPonudu)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

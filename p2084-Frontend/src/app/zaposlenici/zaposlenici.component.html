@@ -1,0 +1,77 @@
+<div class ="zaposlenici">
+  <h1 style="text-align: center">Evidencija o zaposlenicima</h1><br><br>
+  <p style="margin-left: auto ; margin-right: auto; width:90%">Filter: <input style="border: 1px black solid" [(ngModel)]="imeprezime">&nbsp;<button class="btn btn-dark" style="float: right" (click)="noviZaposlenik = true">Dodaj novog zaposlenika</button></p>
+<table *ngIf="zaposlenici != null" class="table table-striped" style="margin-left: auto ; margin-right: auto; width:90%">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col"><p style="text-align: center">Ime</p></th>
+    <th scope="col"><p style="text-align: center">Prezime</p></th>
+    <th scope="col"><p style="text-align: center">Datum rodjenja</p></th>
+    <th scope="col"><p style="text-align: center">Grad</p></th>
+    <th scope="col"><p style="text-align: center">Drzava</p></th>
+    <th scope="col"><p style="text-align: center">Broj telefona</p></th>
+    <th scope="col"><p style="text-align: center">Adresa</p></th>
+    <th scope="col"><p style="text-align: center">Akcija</p></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let x of Filtriraj()">
+    <td><p style="text-align: center">{{x.ime}}</p></td>
+    <td><p style="text-align: center">{{x.prezime}}</p></td>
+    <td><p style="text-align: center">{{x.datumRodjenja}}</p></td>
+    <td><p style="text-align: center">{{x.grad}}</p></td>
+    <td><p style="text-align: center">{{x.drzava}}</p></td>
+    <td><p style="text-align: center">{{x.brojTelefona}}</p></td>
+    <td><p style="text-align: center">{{x.adresa}}</p></td>
+    <td><p style="text-align: center"><button class="btn btn-danger" (click)="ObrisiZaposlenika(x)">Obrisi</button>&nbsp;<button class="btn btn-success" (click)="Uredi(x)">Uredi</button></p></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<app-edit-zaposlenici [editZaposlenik]="odabraniZaposlenik" ></app-edit-zaposlenici>
+
+<div *ngIf="noviZaposlenik" class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="noviZaposlenik = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Ime zaposlenika</label>
+          <input class="form-control" [(ngModel)]="dodajZaposlenika.ime">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Prezime zaposlenika</label>
+          <input class="form-control" [(ngModel)]=dodajZaposlenika.prezime>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Datum rodjenja</label>
+          <input class="form-control" class="form-control" [(ngModel)]=dodajZaposlenika.datumRodjenja placeholder="Format mora biti DD/MM/YYYY">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Grad</label>
+          <input class="form-control" class="form-control" [(ngModel)]=dodajZaposlenika.grad>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Drzava</label>
+          <input class="form-control" class="form-control" [(ngModel)]=dodajZaposlenika.drzava>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Broj telefona</label>
+          <input class="form-control" class="form-control" [(ngModel)]=dodajZaposlenika.brojTelefona>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Adresa</label>
+          <input class="form-control" class="form-control" [(ngModel)]=dodajZaposlenika.adresa>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="noviZaposlenik = false">Close</button>
+        <button type="button" class="btn btn-dark" (click)="Dodaj(dodajZaposlenika)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

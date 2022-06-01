@@ -1,0 +1,50 @@
+<div class ="proizvodi">
+  <h1 style="text-align: center">Evidencija o proizvodima</h1><br><br>
+  <p style="margin-left: auto ; margin-right: auto; width:90%">Filter: <input style="border: 1px black solid" [(ngModel)]="filter"><button class="btn btn-dark" style="float: right" (click)="noviProizvod = true">Dodaj novi proizvod</button>
+  <table *ngIf="proizvodi != null" class="table table-striped" style="margin-left: auto ; margin-right: auto; width:90%">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"><p style="text-align: center">Naziv proizvoda</p></th>
+      <th scope="col"><p style="text-align: center">Cijena</p></th>
+      <th scope="col"><p style="text-align: center">Serijski broj</p></th>
+      <th scope="col"><p style="text-align: center">Dobavljac</p></th>
+      <th scope="col"><p style="text-align: center">Akcija</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let x of Filtriraj()">
+      <td><p style="text-align: center">{{x.nazivProizvoda}}</p></td>
+      <td><p style="text-align: center">{{x.cijena}} KM</p></td>
+      <td><p style="text-align: center">{{x.serijskiBroj}}</p></td>
+      <td><p style="text-align: center">{{x.dobavljac?.nazivDobavljaca}}</p></td>
+      <td><p style="text-align: center"><button class="btn btn-danger" (click)="ObrisiProizvod(x)">Obrisi</button>&nbsp;<button class="btn btn-success" (click)="Uredi(x)">Uredi</button></p></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-edit-proizvodi [editProizvod]="odabraniProizvod"></app-edit-proizvodi>
+<div *ngIf="noviProizvod" class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="noviProizvod = false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Naziv proizvoda</label>
+          <input class="form-control" [(ngModel)]="dodajProizvod.nazivProizvoda">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Cijena</label>
+          <input class="form-control" [(ngModel)]=dodajProizvod.cijena type="number">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="noviProizvod = false">Close</button>
+        <button type="button" class="btn btn-dark" (click)="Dodaj(dodajProizvod)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
